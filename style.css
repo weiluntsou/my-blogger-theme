@@ -1,3 +1,7 @@
+/* 簡單的 Reset */
+* { box-sizing: border-box; }
+body { margin: 0; padding: 0; font-family: sans-serif; }
+img { max-width: 100%; height: auto; }
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Noto+Serif+TC:wght@400;600&display=swap');
 
 /* --- Showon-inspired Minimalist Theme --- */
