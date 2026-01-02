@@ -257,3 +257,108 @@ h3.post-title a:hover {
 .FeaturedPost .post-title {
     font-size: 2rem !important;
 }
+
+/* =========================================
+   1. Reset & Variables (基礎重置)
+   ========================================= */
+:root {
+    --primary-color: #2c3e50;
+    --accent-color: #3498db;
+    --bg-color: #f8f9fa;
+    --text-color: #333;
+    --font-main: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    --container-width: 800px;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: var(--font-main);
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    line-height: 1.6;
+}
+
+a {
+    text-decoration: none;
+    color: var(--accent-color);
+    transition: 0.3s;
+}
+
+a:hover {
+    color: var(--primary-color);
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* =========================================
+   2. Layout (版面配置)
+   ========================================= */
+/* 模擬一個置中的容器 */
+.content-outer,
+.region-inner {
+    max-width: var(--container-width);
+    margin: 0 auto;
+    padding: 0 20px;
+    background: white;
+}
+
+/* Header 區域 */
+.Header {
+    text-align: center;
+    padding: 4rem 0;
+    margin-bottom: 2rem;
+    background: white;
+    border-bottom: 1px solid #eee;
+}
+
+.Header h1 {
+    font-size: 2.5rem;
+    margin: 0;
+    color: var(--primary-color);
+}
+
+.Header .description {
+    color: #666;
+    margin-top: 10px;
+}
+
+/* 文章區域 */
+.post {
+    margin-bottom: 3rem;
+    padding-bottom: 3rem;
+    border-bottom: 1px solid #eee;
+}
+
+.post-title {
+    font-size: 1.8rem;
+    margin-bottom: 10px;
+}
+
+.post-title a {
+    color: var(--primary-color);
+}
+
+.post-body {
+    font-size: 1.1rem;
+    color: #444;
+}
+
+/* =========================================
+   3. Utility (工具類)
+   ========================================= */
+/* 隱藏 Blogger 預設的一堆雜亂元素 */
+.widget-item-control,
+.item-control,
+.quickedit,
+.home-link {
+    display: none !important;
+}
