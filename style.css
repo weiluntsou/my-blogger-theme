@@ -1,131 +1,118 @@
 /* =========================================
-   1. 核心重置 (Blogger 專用版)
+   1. 全局重置 (Global Reset)
    ========================================= */
 :root {
+    --main-width: 860px;
+    /* 內容寬度 */
     --primary: #2c3e50;
-    --accent: #d35400;
-    /* 改個橘色試試，比較顯眼 */
-    --bg: #fff;
-    --text: #333;
-    --width: 860px;
+    /* 主色調：深藍 */
+    --accent: #e74c3c;
+    /* 強調色：紅 */
+    --bg-gray: #f9f9f9;
 }
 
-/* 強制蓋過 Blogger 預設樣式 */
 body {
-    background: var(--bg) !important;
-    color: var(--text) !important;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
+    background-color: var(--bg-gray) !important;
+    font-family: "Helvetica Neue", Arial, sans-serif !important;
     margin: 0 !important;
     padding: 0 !important;
+    color: #333 !important;
 }
 
-/* 隱藏 Blogger 雜亂的預設元件 */
+/* 隱藏 Blogger 原生干擾元素 */
 .navbar,
-.attribution,
 .widget-item-control,
 .item-control,
-.quickedit {
+.quickedit,
+.home-link,
+.feed-links {
     display: none !important;
 }
 
 /* =========================================
-   2. 版面容器 (針對 Blogger 結構)
+   2. 暴力修正容器 (Layout Fix)
    ========================================= */
-/* 大多數 Blogger 主題的主容器叫 .content-outer 或 body 內的 div */
-body>div {
-    max-width: var(--width);
-    margin: 0 auto;
-    padding: 0 20px;
+/* 這是最關鍵的一步！
+   Blogger V3 主題通常用 .centered-top-container 或 .content-outer
+   我們嘗試把所有可能的容器都抓進來置中
+*/
+.content-outer,
+.region-inner,
+.main-outer,
+.centered-top-container,
+body>div.page_body {
+    max-width: var(--main-width) !important;
+    margin: 40px auto !important;
+    /* 上下留白，左右置中 */
+    padding: 0 20px !important;
+    background: #fff !important;
+    /* 內容區塊底色為白 */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    /* 加點陰影增加層次 */
+    min-height: 100vh;
+    /* 確保高度 */
+}
+
+/* 讓側邊欄掉下去或隱藏 (暫時只專注在主內容) */
+.sidebar-container {
+    display: none;
 }
 
 /* =========================================
-   3. 頁首 (Header)
+   3. 標題與文章 (Post Styling)
    ========================================= */
-/* 針對 .Header widget */
-.Header h1,
-.Header .title {
-    font-size: 3rem !important;
+/* 網站大標題 (Header) */
+.Header h1 {
     text-align: center;
-    margin: 40px 0 10px 0;
-    font-weight: 800;
-}
-
-.Header h1 a {
-    color: var(--primary) !important;
-    text-decoration: none;
+    margin: 40px 0 10px;
+    font-size: 2.5rem;
+    font-weight: 700;
 }
 
 .Header .description {
     text-align: center;
-    color: #666;
+    color: #7f8c8d;
     margin-bottom: 50px;
 }
 
-/* =========================================
-   4. 文章區塊 (Posts)
-   ========================================= */
-/* 針對 .blog-posts 和 .post-outer */
-.blog-posts {
-    margin-top: 2rem;
-}
-
-.post-outer {
-    margin-bottom: 60px;
-    border-bottom: 1px solid #eee;
-    padding-bottom: 40px;
-}
-
-/* 文章標題 */
-h3.post-title,
-.post-title {
+/* 文章標題 (你確認過的 class) */
+h3.post-title {
     font-size: 1.8rem !important;
-    margin: 0 0 15px 0 !important;
-    line-height: 1.3;
+    margin-top: 0 !important;
+    margin-bottom: 15px !important;
+    border-left: 5px solid var(--accent);
+    /* 左邊加一條紅線裝飾 */
+    padding-left: 15px !important;
+    line-height: 1.3 !important;
 }
 
-h3.post-title a,
-.post-title a {
-    color: var(--primary);
-    text-decoration: none;
+h3.post-title a {
+    color: var(--primary) !important;
+    text-decoration: none !important;
 }
 
-h3.post-title a:hover {
-    color: var(--accent);
-}
-
-/* 文章日期 */
-.date-header {
-    font-size: 0.85rem;
-    color: #999;
-    margin-bottom: 8px;
-    letter-spacing: 1px;
-}
-
-/* 文章內文 */
+/* 文章內容 */
 .post-body {
-    font-size: 1.15rem;
-    line-height: 1.8;
-    color: #444;
+    font-size: 18px !important;
+    /* 適合閱讀的大小 */
+    line-height: 1.8 !important;
+    color: #2c3e50 !important;
+    margin-bottom: 50px;
 }
 
 .post-body img {
-    max-width: 100%;
-    height: auto;
+    max-width: 100% !important;
+    height: auto !important;
+    border-radius: 8px;
     margin: 20px 0;
-    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-/* 閱讀更多按鈕 */
-.jump-link {
-    text-align: right;
-    margin-top: 20px;
-}
-
-.jump-link a {
-    background: var(--primary);
-    color: white;
-    padding: 8px 16px;
-    border-radius: 4px;
-    font-size: 0.9rem;
-    font-weight: bold;
+.date-header {
+    display: block;
+    margin-bottom: 10px;
+    font-size: 0.8rem;
+    color: #aaa;
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
